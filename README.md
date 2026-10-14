@@ -10,6 +10,8 @@ A C++17 implementation of logarithmic merging for a dynamic inverted index. New 
 - `tests/test_main.cpp` checks correctness, lookup during indexing, finalization, and write cost.
 - `tools/` contains the index builders, verifier, lookup tool, and corpus generator.
 - `scripts/run_experiments.sh` runs the assignment's E1 and E2 experiments.
+- `results/` contains the measured E1 summary and E2 traces.
+- `output/pdf/report.pdf` explains the implementation and experiment results.
 
 ## How logarithmic merging works
 
@@ -63,6 +65,10 @@ scripts/run_experiments.sh
 ```
 
 Results are written to `results/dynamic.csv` and `results/trace_*.csv`. The experiment script verifies every resulting index against the input collection. Record the machine and compiler used when interpreting runtime results; write counts and write amplification are more portable measures of merge work.
+
+## Report summary
+
+On the generated 50,000-document collection (5,678,185 postings), all 12 provided tests passed for both the small and large corpora. For `n = 100,000`, logarithmic merging wrote 30.4 million postings during indexing, compared with 165.0 million for the auxiliary-plus-main baseline. Across the four tested `n` values, the logarithmic policy wrote between 2.46x and 9.09x fewer postings before finalization. The full five-page report and plots are in `output/pdf/report.pdf`.
 
 ## Design notes
 
